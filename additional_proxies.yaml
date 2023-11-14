@@ -1,0 +1,79 @@
+---
+port: 8888
+socks-port: 8889
+mixed-port: 8899
+allow-lan: true
+mode: Rule
+log-level: info
+external-controller: 127.0.0.1:7011
+experimental:
+  ignore-resolve-fail: true
+cfw-latency-timeout: 3000
+cfw-latency-url: http://cp.cloudflare.com/generate_204
+cfw-conn-break-strategy: true
+clash-for-android:
+  ui-subtitle-pattern: '[一-龥]{2,4}'
+url-rewrite:
+- ^https?:\/\/(www.)?(g|google)\.cn https://www.google.com 302
+- ^https?:\/\/(ditu|maps).google\.cn https://maps.google.com 302
+proxies:
+- name: "home-proxy"
+  server: 1.1.1.1
+  port: 8080
+  type: http
+  username: abc
+  password: 123
+  tls: false
+  skip-cert-verify: true
+- name: "work-proxy"
+  server: 8.8.8.8
+  port: 8080
+  type: http
+  username: abc
+  password: 123
+  tls: false
+  skip-cert-verify: true
+- name: "us-http"
+  server: 1.1.1.1
+  port: 8080
+  type: http
+  username: abc
+  password: 123
+  tls: false
+  skip-cert-verify: true
+- name: "us-warp"
+  server: 1.1.1.1
+  port: 8080
+  type: http
+  username: abc
+  password: 123
+  tls: false
+  skip-cert-verify: true
+- name: "vmess-ip01"
+  type: vmess
+  server: 1.1.1.1
+  port: 443
+  uuid: uuid
+  alterId: 0
+  cipher: auto
+  # udp: true
+  tls: true
+  skip-cert-verify: false
+  network: ws
+  ws-path: /baidu
+  ws-headers:
+    Host: vmess_host.com
+- name: "vmess-ip02"
+  type: vmess
+  server: 1.1.1.1
+  port: 443
+  uuid: uuid
+  alterId: 0
+  cipher: auto
+  # udp: true
+  tls: true
+  skip-cert-verify: false
+  network: ws
+  ws-path: /tencent
+  ws-headers:
+    Host: vmess_host.com
