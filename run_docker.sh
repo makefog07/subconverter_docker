@@ -1,7 +1,8 @@
 #!/bin/bash
 CONFIG_DIR="/path/to/subconverter_docker"
 
-docker run -d --net=host \
+docker run -d \
+    -p 25500:25500 \
     --restart unless-stopped \
     -v $CONFIG_DIR/pref.ini:/base/pref.ini \
     -v $CONFIG_DIR/all_base.tpl:/base/base/all_base.tpl \
